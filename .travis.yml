@@ -3,10 +3,12 @@ sudo: false
 dist: trusty
 addons:
   sonarcloud:
-    organization: "easfilho-github"
+    organization: "lucasbsrs-github"
     token:
       secure: 7e03da35bd441706fa557403943a2a5c1fe7ec7a # encrypted value of your token
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+install:
+  - mvn -N io.takari:maven:wrapper
   - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
